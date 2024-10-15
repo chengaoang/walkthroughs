@@ -65,7 +65,7 @@ async function exchangeCodeForToken(code: string) {
     body: new URLSearchParams({
       grant_type: "authorization_code",
       code,
-      redirect_uri: "http://localhost:3000/oauth/google/callback",
+      redirect_uri: "http://localhost:3000/oauth/google/callback", // 用于额外的安全检查
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
     }).toString(),

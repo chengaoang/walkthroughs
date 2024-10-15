@@ -9,6 +9,8 @@ const app = express();
 
 app.use(express.static("static"));
 
+// 点击谷歌登录按钮, 访问这个接口
+// google 授权成功后, 跳转redirect_uri
 app.get("/oauth/google", (req, res) => {
   const params = new URLSearchParams();
 
@@ -26,6 +28,8 @@ app.get("/oauth/google", (req, res) => {
   res.redirect(url);
 });
 
+// 将回调携带的code和client_id/secret发送给google换取access_token
+// 根据access_token换取userinfo
 app.get("/oauth/google/callback", async (req, res) => {
   const { code, state } = req.query;
   const oauthState = getCookie("oauth_state", req.headers.cookie as string);
